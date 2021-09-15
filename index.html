@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>TO DO LIST</h1>
+    <h2>NOVA ATIVIDADE:</h2>
     <label>Insira atividade: </label>
-    <input type="text" id="newTask">
+    <textarea type="text" id="newTask"></textarea>
+    <label>Descrição: </label>
+    <textarea type="text" id="description"></textarea>
+    <label>Prioridade: </label>
+    <select name="prioridade" id="priority">
+        <option value="0">Alta</option>
+        <option value="0">Média</option>
+        <option value="0">Baixa</option>
+        <option value="0">Irrelevante</option>
+    </select>
     <input type="submit" id="saveTask" value='Salvar'></input>
     <ul id="list"></ul>
     

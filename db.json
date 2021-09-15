@@ -4,13 +4,13 @@
       "id": 1,
       "nome": "Estudar JavaScript",
       "descricao": "19:30 - 20:40",
-      "urgencia": 1
+      "prioridade": 1
     },
     {
       "id": 2,
       "nome": "Estudar API's",
       "descricao": "20:40 - 21:40",
-      "urgencia": 3
+      "prioridade": 3
     }
   ],
   "done": [
@@ -18,13 +18,13 @@
       "id": 1,
       "nome": "Ler livros",
       "descricao": "19:30 - 20:40",
-      "urgencia": 1
+      "prioridade": 1
     },
     {
       "id": 2,
       "nome": "Exercícios",
       "descricao": "19:30 - 20:40",
-      "urgencia": 2
+      "prioridade": 2
     }
   ]
 }
