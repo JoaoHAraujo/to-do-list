@@ -4,7 +4,7 @@ h1 {
     margin-bottom: 3rem;
 }
 
-textarea {
+textarea, input {
     display: block;
     width: 500px;
     
@@ -19,4 +19,12 @@ select {
 #saveTask {
     width: fit-content;
     margin-top: 2rem;
+}
+
+#toDoList {
+    margin-top: 7rem;
+}
+
+li {
+    margin-top: 3rem;
 }

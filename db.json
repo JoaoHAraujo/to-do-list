@@ -2,29 +2,16 @@
   "to_do": [
     {
       "id": 1,
-      "nome": "Estudar JavaScript",
-      "descricao": "19:30 - 20:40",
-      "prioridade": 1
+      "task": "Estudar API's",
+      "description": "20:40 - 21:40",
+      "priority": "ALTA"
     },
     {
       "id": 2,
-      "nome": "Estudar API's",
-      "descricao": "20:40 - 21:40",
-      "prioridade": 3
+      "task": "Estudar JavaScript",
+      "description": "20:40 - 21:40",
+      "priority": "MÉDIA"
     }
   ],
-  "done": [
-    {
-      "id": 1,
-      "nome": "Ler livros",
-      "descricao": "19:30 - 20:40",
-      "prioridade": 1
-    },
-    {
-      "id": 2,
-      "nome": "Exercícios",
-      "descricao": "19:30 - 20:40",
-      "prioridade": 2
-    }
-  ]
+  "done": []
 }
