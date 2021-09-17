@@ -3,6 +3,8 @@ const btnSave = document.querySelector('#saveTask')
 
 const urlToDo = "http://localhost:3000/to_do"
 
+
+//SALVAR NOVA TASK
 btnSave.addEventListener('click', function() {
     const newTask = document.querySelector('#newTask').value
     const newDescription = document.querySelector('#description').value
@@ -26,35 +28,28 @@ btnSave.addEventListener('click', function() {
 })
 
 
-
-
-
+//LISTA DE TASKS, COM BOTÕES
 let toDoArray = []
-
 fetch(urlToDo)
     .then(res => res.json())
     .then(toDoList => {
         toDoArray = toDoList
-        // console.log(toDoArray)
-        
+        toDoHTML()
     })
     .catch(() => {console.log('Erro de requisição!')})   
 
+function toDoHTML(){
+    toDoArray.forEach(task => {
+        const taskList = document.querySelector('#taskList')
+        const item = document.createElement('li')
 
-function toDoHTML() {
-    const taskList = document.querySelector('#taskList')
-    const item = document.createElement('li')
+        const itemTask = `<h2> ${task.task} </h2>`
+        const itemDescription = `<p> Descrição: ${task.description} </p>`
+        const itemPriority = `<p> Prioridade: ${task.priority} </p>`
+        const btnEdit = `<button id="task${task.id}">Editar</button>`
 
-    const itemTask = `<h2> task </h2>`
-    const itemDescription = `<p> Descrição: $descriçao </p>`
-    const itemPriority = `<p> Prioridade: $prioridade </p>`
-    const btnEdit = `<button id="task$">Editar</button>`
-
-    item.innerHTML = itemTask + itemDescription + itemPriority + btnEdit
-    
-    taskList.appendChild(item)
+        item.innerHTML = itemTask + itemDescription + itemPriority + btnEdit
+        
+        taskList.appendChild(item)
+    })
 }
-
-toDoArray.forEach(task => {
-    console.log(task)
-})
