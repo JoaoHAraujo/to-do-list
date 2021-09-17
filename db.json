@@ -2,15 +2,15 @@
   "to_do": [
     {
       "id": 1,
-      "task": "Estudar API's",
-      "description": "20:40 - 21:40",
-      "priority": "ALTA"
-    },
-    {
-      "id": 2,
       "task": "Estudar JavaScript",
       "description": "20:40 - 21:40",
       "priority": "MÉDIA"
+    },
+    {
+      "id": 2,
+      "task": "Estudar API's",
+      "description": "lorem ipsum whatever",
+      "priority": "ALTA"
     }
   ],
   "done": []
