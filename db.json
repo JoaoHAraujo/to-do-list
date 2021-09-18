@@ -1,16 +1,28 @@
 {
   "to_do": [
     {
-      "id": 1,
-      "task": "Estudar JavaScript",
-      "description": "20:40 - 21:40",
-      "priority": "MÉDIA"
+      "task": "Sort Array",
+      "description": "Organizar a lista de atividades pelo nível de prioridade.",
+      "priority": "MÉDIA",
+      "id": 1
     },
     {
-      "id": 2,
-      "task": "Estudar API's",
-      "description": "lorem ipsum whatever",
-      "priority": "ALTA"
+      "task": "Ajustar prioridades",
+      "description": "Trocar prioridades para um valor numérico e usar um map (?) para referenciar à string correspondente pra exibição.",
+      "priority": "MÉDIA",
+      "id": 2
+    },
+    {
+      "task": "Adicionar função EDIT",
+      "description": "Criar função de edição de task.\n\n- Colocar em outra página OU\n- Inserir formulário completo com função e remover no fim da mesma.",
+      "priority": "ALTA",
+      "id": 3
+    },
+    {
+      "task": "Inserir Done List",
+      "description": "Atualizar funcionalidade de remoção de task para marcá-la como FEITA para ser exibida em outra lista. (mesma página ou outra?)",
+      "priority": "IRRELEVANTE",
+      "id": 4
     }
   ],
   "done": []
