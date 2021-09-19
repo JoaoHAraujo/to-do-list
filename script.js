@@ -1,6 +1,5 @@
 const urlToDo = "http://localhost:3000/to_do/"
 
-
 //SALVAR NOVA TASK
 const btnSave = document.querySelector('#saveTask')
 btnSave.addEventListener('click', () => {
@@ -8,6 +7,7 @@ btnSave.addEventListener('click', () => {
     const newDescription = document.querySelector('#description').value
     const prioritySelect = document.querySelector('#priority')
     const newPriority = prioritySelect.options[prioritySelect.selectedIndex].text
+    const newPriorityId = parseInt(prioritySelect.options[prioritySelect.selectedIndex].value)
 
     const submitTask = {
         method: 'POST',
@@ -18,19 +18,22 @@ btnSave.addEventListener('click', () => {
             {
                 task: newTask,
                 description: newDescription,
-                priority: newPriority
+                priority: newPriority,
+                priority_Id: newPriorityId
             }
         )
     }
     fetch(urlToDo, submitTask)
+        .then (window.alert('Atividade salva com sucesso!'))
 })
 
-//LISTA DE TASKS, COM BOTÕES
+//REQUISIÇÃO DE TASK LIST PARA ARRAY
 let toDoArray = []
 fetch(urlToDo)
     .then(res => res.json())
     .then(toDoList => {
         toDoArray = toDoList
+        sortToDo(toDoArray)
         renderToDo()
     })
     .catch(() => {console.log('Erro de requisição!')})   
@@ -53,6 +56,26 @@ function renderToDo(){
         btnDel.innerHTML = "Remover"
         btnDel.addEventListener('click', () => {deleteToDo(task.id)})
         taskList.appendChild(btnDel)
+
+        const btnEdit = document.createElement('button')
+        btnEdit.innerHTML = "Editar"
+        btnEdit.addEventListener('click', () => {editToDo(task.id)})
+        taskList.appendChild(btnEdit)
+    })
+}
+
+// SORT toDoArray
+function sortToDo(taskList){
+    taskList.sort((a, b) =>{
+        if(a.priority_Id < b.priority_Id) {
+            return 1
+        }
+        if (a.priority_Id > b.priority_Id) {
+            return -1
+        }
+        else {
+            return 0
+        }
     })
 }
 
@@ -66,10 +89,10 @@ function deleteToDo(delTask) {
         }  
     }
     fetch(urlDelTask, removeTask)
-    window.alert('Atividade removida!')
+        .then(window.alert('Atividade removida!'))
 }
 
 //EDIT TASK
 function editToDo(editTask) {
-
+    console.log(editTask)
 }
