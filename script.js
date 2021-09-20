@@ -25,23 +25,27 @@ btnSave.addEventListener('click', () => {
     }
     fetch(urlToDo, submitTask)
         .then (window.alert('Atividade salva com sucesso!'))
+        .then(clearList())
+        .then(getToDo())
 })
 
 //REQUISIÇÃO DE TASK LIST PARA ARRAY
-let toDoArray = []
-fetch(urlToDo)
-    .then(res => res.json())
-    .then(toDoList => {
-        toDoArray = toDoList
-        sortToDo(toDoArray)
-        renderToDo()
-    })
-    .catch(() => {console.log('Erro de requisição!')})   
+function getToDo() {
+    let toDoArray = []
+    fetch(urlToDo)
+        .then(res => res.json())
+        .then(toDoList => {
+            toDoArray = toDoList
+            sortToDo(toDoArray)
+            renderToDo(toDoArray)
+        })
+        .catch(() => {console.log('Erro de requisição!')}) 
+} 
 
 
 //RENDERIZE TASK LIST WITH OPTIONS
-function renderToDo(){
-    toDoArray.forEach(item => {
+function renderToDo(toDoList){
+    toDoList.forEach(item => {
         const taskList = document.querySelector('#taskList')
         const task = document.createElement('li')
         
@@ -93,6 +97,9 @@ function deleteToDo(delTask) {
     }
     fetch(urlDelTask, removeTask)
         .then(window.alert('Atividade removida!'))
+        .then(clearList())
+        .then(getToDo())
+        
 }
 
 //EDIT TASK = task.id
@@ -139,4 +146,13 @@ function editToDo(edTask) {
     }
     fetch(urlEditTask, editTask)
         .then(window.alert('Atividade editada com sucesso!'))
+        .then(clearList())
+        .then(getToDo())
 }
+
+function clearList() {
+    let clear = document.querySelector('#taskList')
+    clear.innerHTML = ''
+}
+
+getToDo()
