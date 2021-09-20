@@ -4,7 +4,7 @@ h1 {
     margin-bottom: 3rem;
 }
 
-textarea, input {
+.task, .description {
     display: block;
     width: 500px;
     
@@ -12,13 +12,18 @@ textarea, input {
     margin-bottom: 20px;
 }
 
+.priority {
+    margin-bottom: 20px;
+}
+
 select {
     margin-left: 1rem;
 }
 
-#saveTask {
+.saveTask {
+    display: block;
     width: fit-content;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 }
 
 #toDoList {

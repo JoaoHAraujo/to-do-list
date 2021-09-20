@@ -11,21 +11,21 @@
 <body>
     <h1>TO DO LIST</h1>
     <h2>NOVA ATIVIDADE:</h2>
-    <label>Insira atividade: </label>
 
-    <input type="text" id="newTask">
-    <label>Descrição: </label>
-
-    <textarea type="text" id="description"></textarea>
-    <label>Prioridade: </label>
-    
-    <select name="prioridade" id="priority">
-        <option value="3">ALTA</option>
-        <option value="2">MÉDIA</option>
-        <option value="1">BAIXA</option>
-        <option value="0">IRRELEVANTE</option>
-    </select>
-    <input type="submit" id="saveTask" value='Salvar'></input>
+    <form action="">
+        <label>Insira atividade: </label>
+        <input type="text" class="task">
+        <label>Descrição: </label>
+        <textarea type="text" class="description"></textarea>
+        <label>Prioridade: </label>
+        <select name="prioridade" class="priority">
+            <option value="3">ALTA</option>
+            <option value="2">MÉDIA</option>
+            <option value="1">BAIXA</option>
+            <option value="0">IRRELEVANTE</option>
+        </select>
+        <input type="submit" class="saveTask" value='Salvar'></input>
+    </form>
 
     <h2 id="toDoList">Lista de Atividades</h2>
     <ul id="taskList"></ul>    

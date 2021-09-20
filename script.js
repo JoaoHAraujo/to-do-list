@@ -1,11 +1,11 @@
 const urlToDo = "http://localhost:3000/to_do/"
 
 //SALVAR NOVA TASK
-const btnSave = document.querySelector('#saveTask')
+const btnSave = document.querySelector('.saveTask')
 btnSave.addEventListener('click', () => {
-    const newTask = document.querySelector('#newTask').value
-    const newDescription = document.querySelector('#description').value
-    const prioritySelect = document.querySelector('#priority')
+    const newTask = document.querySelector('.task').value
+    const newDescription = document.querySelector('.description').value
+    const prioritySelect = document.querySelector('.priority')
     const newPriority = prioritySelect.options[prioritySelect.selectedIndex].text
     const newPriorityId = parseInt(prioritySelect.options[prioritySelect.selectedIndex].value)
 
@@ -41,26 +41,29 @@ fetch(urlToDo)
 
 //RENDERIZE TASK LIST WITH OPTIONS
 function renderToDo(){
-    toDoArray.forEach(task => {
+    toDoArray.forEach(item => {
         const taskList = document.querySelector('#taskList')
-        const item = document.createElement('li')
+        const task = document.createElement('li')
         
-        const itemTask = `<h3> ${task.task} </h3>`
-        const itemDescription = `<p> Descrição: ${task.description} </p>`
-        const itemPriority = `<p> Prioridade: ${task.priority} </p>`
+        const taskName = `<h3> ${item.task} </h3>`
+        const taskDescription = `<p> Descrição: ${item.description} </p>`
+        const taskPriority = `<p> Prioridade: ${item.priority} </p>`
 
-        item.innerHTML = itemTask + itemDescription + itemPriority
-        taskList.appendChild(item)
+        task.innerHTML = taskName + taskDescription + taskPriority
+        taskList.appendChild(task)
+        task.classList.add(`task${item.id}`)
         
         const btnDel = document.createElement('button')
         btnDel.innerHTML = "Remover"
-        btnDel.addEventListener('click', () => {deleteToDo(task.id)})
-        taskList.appendChild(btnDel)
+        btnDel.addEventListener('click', () => {deleteToDo(item.id)})
+        task.appendChild(btnDel)
+        btnDel.classList.add('deleteTask')
 
         const btnEdit = document.createElement('button')
         btnEdit.innerHTML = "Editar"
-        btnEdit.addEventListener('click', () => {editToDo(task.id)})
-        taskList.appendChild(btnEdit)
+        btnEdit.addEventListener('click', () => {editTaskForm(item.id)})
+        task.appendChild(btnEdit)
+        btnEdit.classList.add('editTask')
     })
 }
 
@@ -92,7 +95,48 @@ function deleteToDo(delTask) {
         .then(window.alert('Atividade removida!'))
 }
 
-//EDIT TASK
-function editToDo(editTask) {
-    console.log(editTask)
+//EDIT TASK = task.id
+function editTaskForm(item) {
+    const task = document.querySelector(`.task${item}`)
+
+    const editName = `<label>Insira atividade: </label><input class='task editTask${item}'></input>`
+    const editDescription = `<label>Descrição: </label><textarea type='text' class='description editDescription${item}'></textarea>`
+    const editPriority = `<label>Prioridade: </label><select name='prioridade' class='priority editPriority${item}'><option value='3'>ALTA</option><option value='2'>MÉDIA</option><option value='1'>BAIXA</option><option value='0'>IRRELEVANTE</option></select>`
+
+    task.innerHTML = editName + editDescription + editPriority
+
+    const btnSave = document.createElement('button')
+    btnSave.innerHTML = 'Salvar'
+    btnSave.classList.add('saveTask')
+    task.appendChild(btnSave)
+
+    btnSave.addEventListener('click', () =>{editToDo(item)})
+}
+
+// edTask === item === id
+function editToDo(edTask) {
+    const urlEditTask = urlToDo + edTask
+
+    const task = document.querySelector(`.editTask${edTask}`).value
+    const description = document.querySelector(`.editDescription${edTask}`).value
+    const prioritySelect = document.querySelector(`.editPriority${edTask}`)
+    const priority = prioritySelect.options[prioritySelect.selectedIndex].text
+    const priorityId = parseInt(prioritySelect.options[prioritySelect.selectedIndex].value)
+
+    const editTask = {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(
+            {
+                task: task,
+                description: description,
+                priority: priority,
+                priority_Id: priorityId
+            }
+        )
+    }
+    fetch(urlEditTask, editTask)
+        .then(window.alert('Atividade editada com sucesso!'))
 }
